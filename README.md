@@ -4,80 +4,22 @@
   <strong>Make a cheap but powerful USB Rubber Ducky with a Raspberry Pi Pico</strong>
 </div>
 
-<br />
-
-<div align="center">
-  <img alt="GitHub code size in bytes" src="https://img.shields.io/github/languages/code-size/dbisu/pico-ducky">
-  <img alt="GitHub license" src="https://img.shields.io/github/license/dbisu/pico-ducky">
-  <a href="https://github.com/dbisu/pico-ducky/graphs/contributors"><img alt="GitHub contributors" src="https://img.shields.io/github/contributors/dbisu/pico-ducky"></a>
-  <img alt="GitHub commit activity" src="https://img.shields.io/github/commit-activity/m/dbisu/pico-ducky">
-  <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/dbisu/pico-ducky">
-</div>
-
-<br />
+# Disclaimer
+This project was originally done by @dbisu (https://github.com/dbisu/pico-ducky), not me. I have only changed the code to work with a display.
 
 ## Quick Start Guide
-Install and have your USB Rubber Ducky working in less than 5 minutes.
 
-1. Download the latest release from the [Releases](https://github.com/dbisu/pico-ducky/releases) page.
-
-2. Plug the device into a USB port while holding the boot button. It will show up as a removable media device named RPI-RP2.
-
-3. Install CircutlPython on the Pico or Pico W
-
-If using a Pico board:
-
-Copy the adafruit-circuitpython-raspberry_pi_pico-en_US-8.0.0.uf2 file to the root of the Pico (RPI-RP2). The device will reboot and after a second or so, it will reconnect as CIRCUITPY.
-
-If using a Pico W board:
-
-Copy the adafruit-circuitpython-raspberry_pi_pico_w-en_US-8.0.0.uf2 file to the root of the Pico (RPI-RP2). The device will reboot and after a second or so, it will reconnect as CIRCUITPY.
-
-4. Copy the lib folder to the root of the CIRCUITPY
-
-5. Copy *.py to the root of the CIRCUITPY
-
-6. Follow the instructions in README.md to enter setup mode
-
-7. Copy your payload as payload.dd to the root of the CIRCUITPY
-
-8. Unplug the device from the USB port and remove the setup jumper.
-
-Enjoy your Pico-Ducky.
-
-## Setup mode
-
-To edit the payload, enter setup mode by connecting the pin 1 (`GP0`) to pin 3 (`GND`), this will stop the pico-ducky from injecting the payload in your own machine.
-The easiest way to do so is by using a jumper wire between those pins as seen bellow.
-
-![Setup mode with a jumper](images/setup-mode.png)
-
-## USB enable/disable mode
-
-If you need the pico-ducky to not show up as a USB mass storage device for stealth, follow these instructions.  
-- Enter setup mode.    
-- Copy your payload script to the pico-ducky.  
-- Disconnect the pico from your host PC.
-- Connect a jumper wire between pin 18 (`GND`) and pin 20 (`GPIO15`).  
-This will prevent the pico-ducky from showing up as a USB drive when plugged into the target computer.  
-- Remove the jumper and reconnect to your PC to reprogram.  
-
-Pico: The default mode is USB mass storage enabled.   
-Pico W: The default mode is USB mass storage **disabled**  
-
-![USB enable/disable mode](images/usb-boot-mode.png)
-
-
------
-
+You will need:
+- Raspberry Pi Pico (With headers)
+- Waveshare LCD 1.3 (4 buttons) or Waveshare LCD 1.14 (2 buttons). As of now only one button is used, so it doesn't matter.
+  
 # Full Install Instructions
 
 Install and have your USB Rubber Ducky working in less than 5 minutes.
 
-1. Clone the repo to get a local copy of the files. `git clone https://github.com/dbisu/pico-ducky.git`
+1. Clone the repo to get a local copy of the files. `https://github.com/XtramCZ/pico-ducky-display`
 
 2. Download [CircuitPython for the Raspberry Pi Pico](https://circuitpython.org/board/raspberry_pi_pico/). *Updated to 8.0.0  
-   Download [CircuitPython for the Raspberry Pi Pico W](https://circuitpython.org/board/raspberry_pi_pico_w/). *Updated to 8.0.0
 
 3. Plug the device into a USB port while holding the boot button. It will show up as a removable media device named `RPI-RP2`.
 
@@ -85,75 +27,24 @@ Install and have your USB Rubber Ducky working in less than 5 minutes.
 
 5. Download `adafruit-circuitpython-bundle-8.x-mpy-YYYYMMDD.zip` [here](https://github.com/adafruit/Adafruit_CircuitPython_Bundle/releases/latest) and extract it outside the device.
 
-6. Navigate to `lib` in the recently extracted folder and copy `adafruit_hid` to the `lib` folder on your Raspberry Pi Pico.
+6. Navigate to `lib` in the recently extracted folder and copy `adafruit_hid`, `asyncio` and `adafruit_display_text` to the `lib` folder on your Raspberry Pi Pico.
 
-7. Copy `adafruit_debouncer.mpy` and `adafruit_ticks.mpy` to the `lib` folder on your Raspberry Pi Pico.
+7. Copy `adafruit_debouncer.mpy`, `adaftuit_st7789.mpy` and `adafruit_ticks.mpy` to the `lib` folder on your Raspberry Pi Pico.
 
-8. Copy `asyncio` to the `lib` folder on your Pico.
+8. Copy `boot.py`, `duckyinpython.py` and `code.py` to the root folder of the Pico.
 
-9. Copy `adafruit_wsgi` to the `lib` folder on your Pico.
+9. Find a script [here](https://github.com/hak5/usbrubberducky-payloads) or [create your own one using Ducky Script](https://docs.hak5.org/hak5-usb-rubber-ducky/ducky-script-basics/hello-world) and save it in the _payloads_ folder. Currently, pico-ducky only supports DuckyScript 1.0, not 3.0.
 
-10. Copy `boot.py` from your clone to the root of your Pico.
+## Navigation
 
-11. Copy `duckyinpython.py`, `code.py`, `webapp.py`, `wsgiserver.py` to the root folder of the Pico.
-
-12. *For Pico W Only* Create the file `secrets.py` in the root of the Pico W. This contains the AP name and password to be created by the Pico W.  
-`secrets = { 'ssid' : "BadAPName", 'password' : "badpassword" }`
-
-13. Find a script [here](https://github.com/hak5/usbrubberducky-payloads) or [create your own one using Ducky Script](https://docs.hak5.org/hak5-usb-rubber-ducky/ducky-script-basics/hello-world) and save it as `payload.dd` in the Pico. Currently, pico-ducky only supports DuckyScript 1.0, not 3.0.
-
-14. Be careful, if your device isn't in [setup mode](#setup-mode), the device will reboot and after half a second, the script will run.
-
-15. **Please note:** by default Pico W will not show as a USB drive
-
-### Pico W Web Service
-The Pico W AP defaults to ip address `192.168.4.1`.  You should be able to find the webservice at `http://192.168.4.1:80`  
-
-The following endpoints are available on the webservice:
-```
-/
-/new
-/ducky
-/edit/<filename>
-/write/<filename>
-/run/<filename>
-```
-
-API endpoints
-```
-/api/run/<filenumber>
-```
-
-## Setup mode
-
-To edit the payload, enter setup mode by connecting the pin 1 (`GP0`) to pin 3 (`GND`), this will stop the pico-ducky from injecting the payload in your own machine.
-The easiest way to do so is by using a jumper wire between those pins as seen bellow.
-
-![Setup mode with a jumper](images/setup-mode.png)
+You may navigate via the display UI with the joystick. UP for going UP and DOWN for going DOWN. Press the stick for execution.
+The red text is your selection. If you have selected a payload and press the joystick then it will run, if you have selected a folder then you will go into the folder. If your selection is on the top "breadcrumb" you will go a directory back. 
 
 ## USB enable/disable mode
 
-If you need the pico-ducky to not show up as a USB mass storage device for stealth, follow these instructions.  
-- Enter setup mode.    
-- Copy your payload script to the pico-ducky.  
-- Disconnect the pico from your host PC.
-- Connect a jumper wire between pin 18 (`GND`) and pin 20 (`GPIO15`).  
-This will prevent the pico-ducky from showing up as a USB drive when plugged into the target computer.  
-- Remove the jumper and reconnect to your PC to reprogram.  
+If you need the pico-ducky to show up as a USB mass storage device for editing the files, hold the A button while plugging in your Pico.
 
-Pico: The default mode is USB mass storage enabled.   
-Pico W: The default mode is USB mass storage **disabled**  
 
-![USB enable/disable mode](images/usb-boot-mode.png)
-
-## Multiple payloads
-
-Multiple payloads can be stored on the Pico and Pico W.  
-To select a payload, ground one of these pins:
-- GP4 - payload.dd
-- GP5 - payload2.dd
-- GP10 - payload3.dd
-- GP11 - payload4.dd
 
 ## Changing Keyboard Layouts
 
