@@ -5,7 +5,7 @@
 </div>
 
 # Disclaimer
-This project was originally done by @dbisu (https://github.com/dbisu/pico-ducky), not me. I have only changed the code to work with a display.
+This project was originally done by [@dbisu](https://github.com/dbisu/pico-ducky), not me. I have only changed the code to work with a display.
 
 ## Quick Start Guide
 
