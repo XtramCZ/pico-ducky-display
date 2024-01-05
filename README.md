@@ -29,7 +29,7 @@ Install and have your USB Rubber Ducky working in less than 5 minutes.
 
 6. Navigate to `lib` in the recently extracted folder and copy `adafruit_hid`, `asyncio` and `adafruit_display_text` to the `lib` folder on your Raspberry Pi Pico.
 
-7. Copy `adafruit_debouncer.mpy`, `adaftuit_st7789.mpy` and `adafruit_ticks.mpy` to the `lib` folder on your Raspberry Pi Pico.
+7. Copy `adafruit_debouncer.mpy`, `adafruit_st7789.mpy` and `adafruit_ticks.mpy` to the `lib` folder on your Raspberry Pi Pico.
 
 8. Copy `boot.py`, `duckyinpython.py` and `code.py` to the root folder of the Pico.
 
@@ -38,12 +38,11 @@ Install and have your USB Rubber Ducky working in less than 5 minutes.
 ## Navigation
 
 You may navigate via the display UI with the joystick. UP for going UP and DOWN for going DOWN. Press the stick for execution.
-The red text is your selection. If you have selected a payload and press the joystick then it will run, if you have selected a folder then you will go into the folder. If your selection is on the top "breadcrumb" you will go a directory back. 
+The red text is your selection. If you select a payload and click the joystick it is going to be executed. If you selected a folder then you will go into the folder. If your selection is on the top "breadcrumb" you will go a directory back. 
 
 ## USB enable/disable mode
 
 If you need the pico-ducky to show up as a USB mass storage device for editing the files, hold the A button while plugging in your Pico.
-
 
 
 ## Changing Keyboard Layouts
