@@ -127,6 +127,7 @@ def run():
             print("path changed to " + path)
             files = os.listdir(path)
             showFiles()
+            selected = 1
     elif selected == 1 and len(files) == 0:
         return
     elif files[selected - 1].endswith(".dd"):
@@ -136,7 +137,7 @@ def run():
         path += f"/{files[selected -1]}"
         files = os.listdir(path)
         showFiles()
-    selected = 1
+        selected = 1
 
 # Append the text group to the splash
 splash.append(text_group)
