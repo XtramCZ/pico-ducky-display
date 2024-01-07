@@ -4,7 +4,6 @@ import terminalio
 import displayio
 import digitalio
 import busio
-import supervisor
 from adafruit_display_text import label
 from adafruit_debouncer import Debouncer
 from adafruit_st7789 import ST7789
@@ -48,7 +47,7 @@ display = ST7789(display_bus, width=320, height=240, rotation=270)
 # Make the display context
 splash = displayio.Group()
 display.root_group = splash
-text_group = displayio.Group(scale=2, x=10, y=10)
+text_group = displayio.Group(scale=2, x=10, y=15)
 selected = 1
 selected_color = 0xff7f50
 
@@ -71,6 +70,7 @@ def show_text(text):
 def select(direction):
     global selected
     global selected_color
+    print(direction, selected)
     if direction == 1: # up
         if selected > 0:
             text_group[selected].color = 0xffffff
@@ -84,7 +84,7 @@ def select(direction):
     elif direction == 0: # down
         if selected == len(text_group)-1:
             text_group[selected].color = 0xffffff
-            selected = 0
+            selected = 0 
             text_group[selected].color = selected_color
         elif selected == 0:
             text_group[selected].color = 0x00ffff
@@ -94,6 +94,11 @@ def select(direction):
             text_group[selected].color = 0xffffff
             selected = selected + 1
             text_group[selected].color = selected_color
+
+    if selected <= 7 and selected >= 0:
+        text_group.y = 15
+    else:
+        text_group.y = (-30*(selected-8))-15
  
  # Load the payloads
 path = "payloads"
@@ -102,16 +107,17 @@ def showFiles():
     # Build the breadcrumb, if pwd is root, then only / is shown
     breadcrumb = ".."+path[8:] if path[8:] is not "" else "/"
 
+    # Check if empty
     clear_text()
     show_text(f"{breadcrumb}")
-    # Check if empty
     if len(files) > 0:
         for file in files:
             if file.endswith(".dd"):
-                show_text(file)
+                show_text(file) 
             else:
                 show_text("/" + file)
     else:
+        text_group.y = 15
         show_text("No payloads found")
 
 showFiles()
