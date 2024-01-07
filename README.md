@@ -11,7 +11,7 @@ This project was originally done by [@dbisu](https://github.com/dbisu/pico-ducky
 
 You will need:
 - Raspberry Pi Pico (With headers)
-- Waveshare LCD 1.3 (4 buttons) or Waveshare LCD 1.14 (2 buttons). As of now only one button is used, so it doesn't matter. However you may need to tweak the UI on 1.14 a bit, so that it fits.
+- Waveshare LCD 1.3 (4 buttons, recommended) or Waveshare LCD 1.14 (2 buttons). With only two buttons you may miss out on some features in the future. You also may need to tweak the UI on 1.14 a bit, so that it fits.
   
 # Full Install Instructions
 
