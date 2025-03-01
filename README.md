@@ -1,8 +1,10 @@
-<h1 align="center">pico-ducky</h1>
-
+<h1 align="center">pico-ducky-display</h1>
 <div align="center">
-  <strong>Make a cheap but powerful USB Rubber Ducky with a Raspberry Pi Pico</strong>
+  <strong>Make a cheap but powerful USB Rubber Ducky with a Raspberry Pi Pico (and a display)</strong>
+  <br><br>
+  <img src="https://github.com/user-attachments/assets/f75d7af3-cfef-419d-8cdd-cbbd956fb909" width="600">
 </div>
+
 
 # Disclaimer
 This project was originally done by [@dbisu](https://github.com/dbisu/pico-ducky), not me. I have only changed the code to work with a display.
